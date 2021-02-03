@@ -1,0 +1,59 @@
+@import "global.less";
+
+table {
+    font-size: @h6;
+    font-weight: inherit;
+    display: block;
+    overflow-x: auto;
+    min-width: 200px;
+    margin: auto;
+    border-collapse: collapse;
+    cursor: default;
+    th,
+    td {
+        padding: 6px 12px;
+        &:last-child {
+            border-right: none;
+        }
+    }
+    thead {
+        tr {
+            background: @grey-300;
+            th {
+                font-weight: 700;
+                position: relative;
+                color: @grey-900;
+            }
+        }
+    }
+    tbody {
+        tr {
+            transition: .2s;
+            background: white;
+            td {
+                button {
+                    font-size: @h6;
+                    margin: 0 2px;
+                    padding: 2px 10px;
+                    color: white;
+                    background: @grey-700;
+                    &:hover {
+                        background: @grey-800;
+                    }
+                }
+            }
+        }
+    }
+    tr {
+        border-bottom: 1px solid @blue-grey-100;
+        th {
+            border-top: 1px solid @blue-grey-100;
+            border-right: 1px solid @blue-grey-100;
+        }
+        td {
+            overflow-y: hidden;
+            color: @grey-800;
+            border-right: 1px solid @blue-grey-100;
+        }
+    }
+}
