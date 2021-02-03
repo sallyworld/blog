@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% include head.html %}
+<body>
+    <input type="hidden" class="global" name="contextPath" value="{{ site.baseurl }}" />
+
+    <header role="header" target="body">
+        <div class="container">
+            <nav class="home" onclick="window.location.href = '{{ site.baseurl }}/'">{{ site.title }}</nav>
+            <nav class="icon icon-hamburger" role="icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </nav>
+            <nav class="menu" role="menu" style="display: none;">
+                <ul>
+                </ul>
+            </nav>
+            <div class="mask" role="mask" style="display: none;"></div>
+        </div>
+    </header>
+    <main class="container" role="main">
+        {{ content }}
+    </main>
+    <footer class="container">
+        &copy; <time datetime="{{ site.time }}">{{ site.time | date: '%Y' }}</time> {{ site.author.name }}'s works through the <a href="{{ site.author.url }}">Portfolio</a> site.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div id="list">
+    {% for post in paginator.posts %}
+    <a class="item" href="{{ post.url | prepend: site.baseurl }}">
+        <time datetime="{{ post.date }}">{{ post.category | capitalize }} / {{ post.date | date: "%B %d, %Y" }}</time>
+        <div class="title">{{ post.title }}</div>
+        <div class="line"></div>
+        <p>
+            {{ post.content | strip_html | truncatewords: 30}}
+        </p>
+    </a>
+    {% endfor %}
+</div>
+
+{% include paginate.html %}

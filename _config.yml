@@ -1,0 +1,22 @@
+# Site
+baseurl: /blog
+name: Sally
+title: 'S a l l y'
+# Author
+author:
+  name: Sally
+  url: https://sallyworld.github.io
+  email: specialguest@live.co.kr
+
+# Jekyll
+permalink: /post/:categories/:title
+markdown: kramdown
+paginate: 5
+paginate_path: /page/:num
+
+# Plugins
+plugins:
+  - jekyll-paginate
+
+# Exclude list
+exclude: [Gemfile, Gemfile.lock, _site]

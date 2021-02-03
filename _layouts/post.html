@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<div id="post">
+    <div class="category">{{ page.category | capitalize }}</div>
+    <div class="title">{{ page.title }}</div>
+    <div class="info">
+        <span>Written by</span>
+        {% if page.author %}
+            {{ page.author }}
+        {% else %}
+            {{ site.author.name }}
+        {% endif %}
+
+        {% if page.date %}
+        <span>on </span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        {% endif %}
+    </div>
+    <div class="line"></div>
+    {{ content }}
+</div>
+
+<div id="pager">
+    {% if page.previous.url %}
+        <a href="{{ page.previous.url | prepend: site.baseurl }}" class="page prev" title="{{ page.previous.title }}">← 이전 글</a>
+    {% endif %}
+    {% if page.next.url %}
+        <a href="{{ page.next.url | prepend: site.baseurl }}" class="page next" title="{{ page.next.title }}">다음 글 →</a>
+    {% endif %}
+    <a href="#" class="top">Top</a>
+</div>
+
+{% if page.comments %}
+<div id="fb-root"></div>
+<div class="fb-comments" data-href="{{ page.url | prepend: site.url }}" data-width="100%" data-numposts="10" data-order-by="social"></div>
+<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '769490806574943',
+            xfbml: true,
+            version: 'v2.12'
+        });
+
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id) {
+        var js;
+        var fjs = d.getElementsByTagName(s)[0];
+
+        if (d.getElementById(id)) return;
+
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12';
+
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+{% endif %}
