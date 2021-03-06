@@ -40,7 +40,7 @@ comments: true
 
 ### 답안
 
-```javascript
+```JS
 function solution(heights) {
     var answer = [];
 
@@ -98,7 +98,7 @@ function solution(heights) {
 
 ### 답안
 
-```javascript
+```JS
 function solution(bridge_length, weight, truck_weights) {
     var answer = 0;
 
@@ -160,7 +160,7 @@ function solution(bridge_length, weight, truck_weights) {
 
 ### 답안
 
-```javascript
+```JS
 function solution(progresses, speeds) {
     var answer = [];
 
