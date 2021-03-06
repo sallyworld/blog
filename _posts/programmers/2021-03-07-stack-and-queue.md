@@ -60,3 +60,83 @@ function solution(heights) {
     return answer;
 }
 ```
+
+## 다리를 지나는 트럭
+
+### 문제
+
+트럭 여러 대가 강을 가로지르는 1차선 다리를 정해진 순으로 건너려고 합니다. 모든 트럭이 다리를 건너려면 최소 몇 초가 걸리는지 알아내야 합니다. 트럭은 1초에 1만큼 움직이며 다리 길이는 `bridge_length`이고 무게 `weight`까지 견딥니다.
+
+* 트럭이 다리에 완전히 오르지 않은 경우 이 트럭의 무게는 고려하지 않습니다.
+
+예를 들어, 길이가 2이고 10kg 무게를 견디는 다리가 있습니다. 무게가 `[7, 4, 5, 6]kg`인 트럭이 순서대로 최단 시간 안에 다리를 건너려면 다음과 같이 건너야 합니다.
+
+|경과 시간|다리를 지난 트럭|다리를 건너는 트럭|대기 트럭|
+|:---:|---|---|---|
+|0|[]|[]|[7, 4, 5, 6]|
+|1|[]|[7]|[4, 5, 6]|
+|2|[]|[7]|[4, 5, 6]|
+|3|[7]|[4]|[5, 6]|
+|4|[7]|[4, 5]|[6]|
+|5|[7, 4]|[5]|[6]|
+|6|[7, 4, 5]|[6]|[]|
+|7|[7, 4, 5]|[6]|[]|
+|8|[7, 4, 5, 6]|[]|[]
+
+따라서, 모든 트럭이 다리를 건너려면 최소 **8초**가 걸립니다.
+
+`solution` 함수의 매개 변수로 다리 길이 `bridge_length`, 다리가 견딜 수 있는 무게 `weight`, 트럭별 무게 `truck_weights`가 주어집니다. 이때 모든 트럭이 다리를 건너려면 최소 몇 초가 걸리는지 return하도록 `solution` 함수를 작성해 주세요.
+
+* `bridge_length`는 1 이상 10,000 이하입니다.
+* `weight`는 1 이상 10,000 이하입니다.
+* `truck_weights`의 길이는 1 이상 10,000 이하입니다.
+* 모든 트럭의 무게는 1 이상 `weight` 이하입니다.
+
+### 예시
+
+![02]
+
+### 답안
+
+```javascript
+function solution(bridge_length, weight, truck_weights) {
+    var answer = 0;
+
+    var queue_weights = [];
+    var queue_weights_sum = 0;
+
+    for (var i = 0; i < bridge_length; i++) {
+        queue_weights.push(0);
+    }
+
+    var truck_weight = truck_weights.shift();
+
+    queue_weights.shift();
+    queue_weights.push(truck_weight);
+
+    queue_weights_sum += truck_weight;
+
+    answer++;
+
+    while (queue_weights_sum > 0) {
+        queue_weights_sum -= queue_weights.shift();
+
+        if (truck_weights.length > 0) {
+            if (queue_weights_sum + truck_weights[0] > weight) {
+                queue_weights.push(0);
+            } else {
+                truck_weight = truck_weights.shift();
+
+                queue_weights.push(truck_weight);
+                queue_weights_sum += truck_weight;
+            }
+        }
+
+        answer++;
+    }
+
+    return answer;
+}
+```
+
+[02]: {{ site.baseurl }}/assets/images/{{ page.category }}/{{ page.alias }}/02.jpg
